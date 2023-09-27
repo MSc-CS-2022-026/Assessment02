@@ -1,0 +1,13 @@
+#PBS -l walltime=00:01:00
+#PBS -N parallel
+#PBS -l nodes=1
+
+export OMP_NUM_THREADS=2
+
+cd $PBS_O_WORKDIR
+cat $PBS_NODEFILE
+
+echo "Number of threads: $OMP_NUM_THREADS"
+
+./medge_parallel q image/lena_gray.bmp parallel_out.bmp 1 high
+
